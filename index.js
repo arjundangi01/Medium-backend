@@ -11,11 +11,12 @@ const cookie = require("cookie");
 const app = express();
 const session = require("express-session");
 const jwt = require('jsonwebtoken');
+require("dotenv").config();
 const { UserModel } = require("./models/User.model");
 const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
-
+const PORT = process.env.PORT;
 app.use(cookieParser());
 
 app.use(express.json());
@@ -70,7 +71,7 @@ app.get(
   }
 );
 
-app.listen(8080, async () => {
+app.listen(PORT, async () => {
   try {
     await connection;
   } catch (error) {
