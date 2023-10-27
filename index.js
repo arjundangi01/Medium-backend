@@ -19,7 +19,11 @@ const fetch = (...args) =>
 app.use(cookieParser());
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "https://travelious-project.netlify.app","https://comforting-taffy-d07f72.netlify.app"],
+  })
+);
 
 
 app.get("/", (req, res) => {
