@@ -134,11 +134,11 @@ userRouter.post("/login", async (req, res) => {
           const token = jwt.sign(userObj, "secretKey");
           res.send({ message: "Login Successful", token });
         } else {
-          res.send("Entered Wrong Detail");
+          res.send( {message:"Entered Wrong Detail"});
         }
       });
     } else {
-      res.send("Email is not Registered");
+      res.send({message:"Email is not Registered"});
     }
   } catch (error) {
     console.log(error)
