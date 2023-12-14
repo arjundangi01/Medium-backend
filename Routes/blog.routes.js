@@ -16,6 +16,12 @@ blogRouter.get("/", async (req, res) => {
   const { q, user,filter,page } = req.query;
   if (q) {
     filterObj["_id"] = q;
+    const data = await BlogModel.find(filterObj);
+    const likes = await LikeModel.find({ blogId: data[0]._id })
+    const allLikes = likes.map((ele) => ele.likedBy);
+    
+    console.log('s',allLikes)
+    return res.send({data,allLikes});
   }
   if (filter) {
     // console.log(filter)
